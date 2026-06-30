@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 import json
 import os
 import platform
@@ -52,6 +53,13 @@ def report():
         }
     )
 
+@app.get("/api/time")
+def current_time():
+    return jsonify(
+	{
+	   "timestamp": datetime.now(timezone.utc).isoformat()
+	}
+    )
 
 if __name__ == "__main__":
     app.run(
